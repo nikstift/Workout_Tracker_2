@@ -17,6 +17,7 @@ class ExerciseRepository {
         return exercises
     }
 
+
     fun addSetToExercise(exerciseName: String, newSet: Set) {
         val currentList = exercises.value ?: emptyList()
         val updatedList = currentList + createPushExercises(1)
