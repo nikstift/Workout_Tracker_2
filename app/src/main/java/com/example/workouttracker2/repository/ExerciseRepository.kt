@@ -17,10 +17,21 @@ class ExerciseRepository {
         return exercises
     }
 
-
     fun addSetToExercise(exerciseName: String, newSet: Set) {
-        val currentList = exercises.value ?: emptyList()
-        val updatedList = currentList + createPushExercises(1)
-        exercises.value = updatedList
+        val currentExercises = exercises.value ?: return
+
+        val updatedExercises = currentExercises.map { exercise ->
+            if (exercise.name == exerciseName) {
+                // Aktualisiere die Sets der gefundenen Übung
+                val updatedSets = exercise.sets.toMutableList()
+                updatedSets.add(newSet)
+                exercise.sets = updatedSets
+                exercise
+            } else {
+                exercise
+            }
+        }
+
+        exercises.value = updatedExercises
     }
 }

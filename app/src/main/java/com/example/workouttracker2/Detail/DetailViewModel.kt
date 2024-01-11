@@ -19,7 +19,8 @@ class DetailViewModel(private val savedStateHandle: SavedStateHandle) : ViewMode
     }
 
 
-    fun addSetToExercise(exerciseName: String, set: Set) {
-        exerciseRepository.addSetToExercise(exerciseName, set)
+    fun addSetToExercise(exerciseName: String, repetitions: Int, weight: Double, notes: String) {
+        val newSet = Set(repetitions, weight, notes)
+        exerciseRepository.addSetToExercise(exerciseName, newSet)
     }
 }
