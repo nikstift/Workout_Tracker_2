@@ -10,12 +10,20 @@ var exerciseRepository = ExerciseRepository()
 
 class ExerciseRepository {
     private val exercises: MutableLiveData<List<Exercise>> = MutableLiveData(
-        createPushExercises(50)
+        createPushExercises(1)
     )
 
     fun readAllPush(): LiveData<List<Exercise>> {
         return exercises
     }
+
+    fun createExercise(exercise: Exercise) {
+        val currentExercises = exercises.value?.toMutableList() ?: mutableListOf()
+        currentExercises.add(exercise)
+        exercises.value = currentExercises
+    }
+
+
 
     fun addSetToExercise(exerciseName: String, newSet: Set) {
         val currentExercises = exercises.value ?: return

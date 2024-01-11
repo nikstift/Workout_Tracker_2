@@ -9,6 +9,8 @@ class PushWorkoutListViewModel() : ViewModel() {
     fun readAllPush(): LiveData<List<Exercise>> {
         return exerciseRepository.readAllPush()
     }
-
+    fun addExercise(exercise: Exercise) {
+        exerciseRepository.createExercise(exercise)
+    }
 
 }

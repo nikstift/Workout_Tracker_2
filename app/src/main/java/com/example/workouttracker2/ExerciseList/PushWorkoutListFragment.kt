@@ -1,13 +1,18 @@
 package com.example.workouttracker2.ExerciseList
 
+import android.app.AlertDialog
 import android.os.Bundle
 import android.view.View
+import android.widget.EditText
 import android.widget.TextView
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.workouttracker2.Exercise
 import com.example.workouttracker2.R
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 class PushWorkoutListFragment : Fragment(R.layout.fragment_excercise_list) {
 
@@ -20,6 +25,11 @@ class PushWorkoutListFragment : Fragment(R.layout.fragment_excercise_list) {
         val workoutName = arguments?.let { PushWorkoutListFragmentArgs.fromBundle(it).workoutName }
         view.findViewById<TextView>(R.id.workoutName).text = workoutName
         setupList()
+        val fabButton = view.findViewById<FloatingActionButton>(R.id.addExerciseButton)
+        fabButton.setOnClickListener {
+            // Zeigen Sie einen Dialog an, um den Übungsnamen einzugeben
+            showExerciseNameDialog()
+        }
     }
     private fun setupList() {
         // Initialisierung des RecyclerView und des Adapters
@@ -32,5 +42,38 @@ class PushWorkoutListFragment : Fragment(R.layout.fragment_excercise_list) {
         pushWorkoutViewModel.readAllPush().observe(viewLifecycleOwner, { exercises ->
             exerciseAdapter.updateExercises(exercises)
         })
+    }
+
+
+
+
+    private fun showExerciseNameDialog() {
+        val builder = AlertDialog.Builder(requireContext())
+        builder.setTitle("Neue Übung hinzufügen")
+
+        val input = EditText(requireContext())
+        input.hint = "Übungsnamen eingeben"
+        builder.setView(input)
+
+        builder.setPositiveButton("Hinzufügen") { dialog, _ ->
+            val exerciseName = input.text.toString().trim()
+            if (exerciseName.isNotEmpty()) {
+                // Neue Übung erstellen (ohne Sets)
+                val newExercise = Exercise(exerciseName, mutableListOf())
+
+                // Fügen Sie die Übung dem ViewModel hinzu (hier sollten Sie die ViewModel-Methode zum Hinzufügen verwenden)
+                pushWorkoutViewModel.addExercise(newExercise)
+
+                dialog.dismiss()
+            } else {
+                Toast.makeText(requireContext(), "Bitte einen Übungsnamen eingeben", Toast.LENGTH_SHORT).show()
+            }
+        }
+
+        builder.setNegativeButton("Abbrechen") { dialog, _ ->
+            dialog.cancel()
+        }
+
+        builder.show()
     }
 }

@@ -23,4 +23,6 @@ class DetailViewModel(private val savedStateHandle: SavedStateHandle) : ViewMode
         val newSet = Set(repetitions, weight, notes)
         exerciseRepository.addSetToExercise(exerciseName, newSet)
     }
+
+
 }
