@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:columnCount="2"
+    android:padding="16dp"
+    android:alignmentMode="alignMargins"
+    android:columnOrderPreserved="false">
+
+    <Button
+        android:id="@+id/btn_push_workout"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_columnWeight="1"
+        android:text="Push workout"
+        android:layout_margin="8dp"/>
+
+    <Button
+        android:id="@+id/btn_pull_workout"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_columnWeight="1"
+        android:text="Pull workout"
+        android:layout_margin="8dp"/>
+
+    <Button
+        android:id="@+id/btn_leg_workout"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_columnWeight="1"
+        android:text="Leg workout"
+        android:layout_margin="8dp"/>
+
+    <Button
+        android:id="@+id/btn_custom_workout"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_columnWeight="1"
+        android:text="Spontan Workout"
+        android:layout_margin="8dp"/>
+</GridLayout>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/navigation_main"
+    app:startDestination="@id/workoutListFragment">
+
+    <fragment
+        android:id="@+id/workoutListFragment"
+        android:name="com.example.workouttracker2.Grid.WorkoutListFragment"
+        android:label="workout_list_fragment">
+      <action
+            android:id="@+id/action_to_pushWorkoutListFragment"
+            app:destination="@id/pushWorkoutListFragment"/>
+        <!-- Definieren Sie ähnliche Aktionen für andere Workout-List-Fragments -->
+    </fragment>
+
+  <fragment
+        android:id="@+id/pushWorkoutListFragment"
+        android:name="com.example.workouttracker2.ExerciseList.PushWorkoutListFragment"
+        android:label="push_workout_list_fragment">
+      <argument
+          android:name="workoutName"
+          app:argType="string"/>
+       <action
+            android:id="@+id/action_to_exerciseDetailFragment"
+            app:destination="@id/detailFragment"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/detailFragment"
+        android:name="com.example.workouttracker2.Detail.DetailFragment"
+        android:label="detail_fragment">
+        <argument
+            android:name="exercise"
+            app:argType="com.example.workouttracker2.Exercise"/>
+    </fragment>
+
+</navigation>
