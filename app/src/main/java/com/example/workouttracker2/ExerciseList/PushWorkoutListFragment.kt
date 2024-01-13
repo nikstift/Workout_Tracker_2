@@ -59,7 +59,7 @@ class PushWorkoutListFragment : Fragment(R.layout.fragment_excercise_list) {
             val exerciseName = input.text.toString().trim()
             if (exerciseName.isNotEmpty()) {
                 // Neue Übung erstellen (ohne Sets)
-                val newExercise = Exercise(exerciseName, mutableListOf())
+                val newExercise = Exercise(name = exerciseName)
 
                 // Fügen Sie die Übung dem ViewModel hinzu (hier sollten Sie die ViewModel-Methode zum Hinzufügen verwenden)
                 pushWorkoutViewModel.addExercise(newExercise)

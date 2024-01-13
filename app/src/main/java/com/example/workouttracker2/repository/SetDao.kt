@@ -1,5 +1,6 @@
 package com.example.workouttracker2.repository
 
+import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Insert
@@ -23,5 +24,5 @@ interface SetDao {
     fun deleteSet(set: Set)
 
     @Query("SELECT * FROM sets WHERE exerciseId = :exerciseId")
-    fun findSetsForExercise(exerciseId: Int): List<Set>
+    fun findSetsForExercise(exerciseId: Int): LiveData<List<Set>>
 }

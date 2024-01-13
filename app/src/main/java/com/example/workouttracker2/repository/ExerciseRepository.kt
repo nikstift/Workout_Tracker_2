@@ -3,8 +3,11 @@ package com.example.workouttracker2.repository
 import androidx.lifecycle.LiveData
 import com.example.workouttracker2.Exercise
 import com.example.workouttracker2.Set
+import com.example.workouttracker2.exerciseDao
+import com.example.workouttracker2.setDao
 
-class ExerciseRepository(private val exerciseDao: ExerciseDao, private val setDao: SetDao) {
+var exerciseRepository = ExerciseRepository()
+class ExerciseRepository() {
 
     fun readExerciseById(exerciseId: Int): Exercise {
         return exerciseDao.findExerciseById(exerciseId)
@@ -23,8 +26,11 @@ class ExerciseRepository(private val exerciseDao: ExerciseDao, private val setDa
         exerciseDao.insertExercise(exercise)
     }
 
-    suspend fun addSetToExercise(exerciseId: Int, set: Set) {
+    fun addSetToExercise(exerciseId: Int, set: Set) {
         set.exerciseId = exerciseId // Legen Sie den Fremdschlüssel für das Set fest
         setDao.insertSet(set)
+    }
+    fun findSetsForExercise(exerciseId: Int): LiveData<List<Set>> {
+        return setDao.findSetsForExercise(exerciseId)
     }
 }

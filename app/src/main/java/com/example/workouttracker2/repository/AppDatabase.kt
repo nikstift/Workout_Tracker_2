@@ -27,6 +27,7 @@ abstract class AppDatabase : RoomDatabase() {
                     "workout_tracker_database"
                 )
                     .fallbackToDestructiveMigration()
+                    .allowMainThreadQueries()
                     .build()
                 INSTANCE = instance
                 return instance
