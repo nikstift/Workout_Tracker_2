@@ -1,16 +1,12 @@
 package com.example.workouttracker2
 
-import java.io.Serializable
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 
+@Entity(tableName = "exercises")
 class Exercise(
-    var name: String,
-    var sets: MutableList<Set> = mutableListOf()
-) : Serializable
+    @PrimaryKey(autoGenerate = true)
+    var id: Int =0,
+    var name: String
+)
 
-fun createPushExercises(exerciseCount: Int): List<Exercise> =
-    (1..exerciseCount).map { exerciseNum ->
-        Exercise("Push $exerciseNum").apply {
-            sets.add(Set(10, 0.1 * exerciseNum, "Set 1 of Push $exerciseNum"))
-            sets.add(Set(12, 0.2 * exerciseNum, "Set 2 of Push $exerciseNum"))
-        }
-    }

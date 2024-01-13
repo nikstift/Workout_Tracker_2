@@ -1,45 +1,30 @@
 package com.example.workouttracker2.repository
 
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import com.example.workouttracker2.Exercise
 import com.example.workouttracker2.Set
-import com.example.workouttracker2.createPushExercises
 
-var exerciseRepository = ExerciseRepository()
+class ExerciseRepository(private val exerciseDao: ExerciseDao, private val setDao: SetDao) {
 
-class ExerciseRepository {
-    private val exercises: MutableLiveData<List<Exercise>> = MutableLiveData(
-        createPushExercises(1)
-    )
-
-    fun readAllPush(): LiveData<List<Exercise>> {
-        return exercises
+    fun readExerciseById(exerciseId: Int): Exercise {
+        return exerciseDao.findExerciseById(exerciseId)
     }
 
-    fun createExercise(exercise: Exercise) {
-        val currentExercises = exercises.value?.toMutableList() ?: mutableListOf()
-        currentExercises.add(exercise)
-        exercises.value = currentExercises
+    fun updateExercise(exercise: Exercise) {
+        exerciseDao.updateExercise(exercise)
+    }
+
+    fun readAllExercises(): LiveData<List<Exercise>> {
+        return exerciseDao.findAllExercises()
     }
 
 
+    suspend fun addExercise(exercise: Exercise) {
+        exerciseDao.insertExercise(exercise)
+    }
 
-    fun addSetToExercise(exerciseName: String, newSet: Set) {
-        val currentExercises = exercises.value ?: return
-
-        val updatedExercises = currentExercises.map { exercise ->
-            if (exercise.name == exerciseName) {
-                // Aktualisiere die Sets der gefundenen Übung
-                val updatedSets = exercise.sets.toMutableList()
-                updatedSets.add(newSet)
-                exercise.sets = updatedSets
-                exercise
-            } else {
-                exercise
-            }
-        }
-
-        exercises.value = updatedExercises
+    suspend fun addSetToExercise(exerciseId: Int, set: Set) {
+        set.exerciseId = exerciseId // Legen Sie den Fremdschlüssel für das Set fest
+        setDao.insertSet(set)
     }
 }
