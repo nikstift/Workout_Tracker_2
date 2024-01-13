@@ -5,6 +5,7 @@ import com.example.workouttracker2.Exercise
 import com.example.workouttracker2.Set
 import com.example.workouttracker2.exerciseDao
 import com.example.workouttracker2.setDao
+import kotlinx.coroutines.delay
 
 var exerciseRepository = ExerciseRepository()
 class ExerciseRepository() {
@@ -32,5 +33,24 @@ class ExerciseRepository() {
     }
     fun findSetsForExercise(exerciseId: Int): LiveData<List<Set>> {
         return setDao.findSetsForExercise(exerciseId)
+    }
+
+    suspend fun performLongRunningOperation() {
+        // Verzögere die Ausführung für 3 Sekunden
+        delay(3000)
+
+        // Erstelle eine zufällige Übung (Beispiel)
+        val randomExercise = createRandomExercise()
+
+        // Füge die zufällige Übung dem Repository hinzu (du kannst dies an deine Logik anpassen)
+        addExercise(randomExercise)
+    }
+
+    private fun createRandomExercise(): Exercise {
+        val exerciseNameList = listOf("Push-Up", "Squat", "Lunges", "Plank", "Burpees")
+        val randomExerciseName = exerciseNameList.random()
+
+
+        return Exercise(name = randomExerciseName)
     }
 }

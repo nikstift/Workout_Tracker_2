@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.example.workouttracker2.Exercise
 import com.example.workouttracker2.R
 import com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -17,12 +18,14 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton
 class PushWorkoutListFragment : Fragment(R.layout.fragment_excercise_list) {
 
     private lateinit var recyclerView: RecyclerView
+    private lateinit var refresher: SwipeRefreshLayout
     private lateinit var exerciseAdapter: ExerciseListAdapter
     private val pushWorkoutViewModel: PushWorkoutListViewModel by viewModels()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val workoutName = arguments?.let { PushWorkoutListFragmentArgs.fromBundle(it).workoutName }
+        refresher = view.findViewById(R.id.swipeRefreshLayout)
         view.findViewById<TextView>(R.id.workoutName).text = workoutName
         setupList()
         val fabButton = view.findViewById<FloatingActionButton>(R.id.addExerciseButton)
@@ -42,6 +45,13 @@ class PushWorkoutListFragment : Fragment(R.layout.fragment_excercise_list) {
         pushWorkoutViewModel.readAllPush().observe(viewLifecycleOwner, { exercises ->
             exerciseAdapter.updateExercises(exercises)
         })
+
+        refresher.setOnRefreshListener {
+            // Hier kann der Refresh prozess angestoßen werden. Der Refresher kann mit isRefreshing = false wieder versteckt werden
+            // adapter.updateContacts(ArrayList(listViewModel.readAll()))
+            pushWorkoutViewModel.addRandomContact()
+            refresher.isRefreshing = false
+        }
     }
 
 
