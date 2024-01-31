@@ -17,10 +17,4 @@ class PushWorkoutListViewModel() : ViewModel() {
             exerciseRepository.addExercise(exercise)
         }
     }
-
-    fun addRandomContact(){
-        viewModelScope.launch(Dispatchers.IO) {
-            exerciseRepository.performLongRunningOperation()
-        }
-    }
 }
