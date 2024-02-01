@@ -10,7 +10,6 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.workouttracker2.Exercise
 import com.example.workouttracker2.R
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 
@@ -22,12 +21,11 @@ class PushWorkoutListFragment : Fragment(R.layout.fragment_excercise_list) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val workoutName = arguments?.let { PushWorkoutListFragmentArgs.fromBundle(it).workoutName }
-        view.findViewById<TextView>(R.id.workoutName).text = workoutName
+        val workout = pushWorkoutViewModel.read()
+        view.findViewById<TextView>(R.id.workoutName).text = workout.name
         setupList()
         val fabButton = view.findViewById<FloatingActionButton>(R.id.addExerciseButton)
         fabButton.setOnClickListener {
-            // Zeigen Sie einen Dialog an, um den Übungsnamen einzugeben
             showExerciseNameDialog()
         }
     }
@@ -39,7 +37,7 @@ class PushWorkoutListFragment : Fragment(R.layout.fragment_excercise_list) {
         recyclerView.adapter = exerciseAdapter
 
         // Beobachten der LiveData aus dem ViewModel
-        pushWorkoutViewModel.readAllPush().observe(viewLifecycleOwner, { exercises ->
+        pushWorkoutViewModel.readWorkoutExercises(pushWorkoutViewModel.read().id).observe(viewLifecycleOwner, { exercises ->
             exerciseAdapter.updateExercises(exercises)
         })
 
@@ -59,18 +57,15 @@ class PushWorkoutListFragment : Fragment(R.layout.fragment_excercise_list) {
         builder.setPositiveButton("Hinzufügen") { dialog, _ ->
             val exerciseName = input.text.toString().trim()
             if (exerciseName.isNotEmpty()) {
-                val newExercise = Exercise(name = exerciseName)
-                pushWorkoutViewModel.addExercise(newExercise)
+                pushWorkoutViewModel.addExerciseToWorkout(exerciseName)
                 dialog.dismiss()
             } else {
                 Toast.makeText(requireContext(), "Bitte einen Übungsnamen eingeben", Toast.LENGTH_SHORT).show()
             }
         }
-
         builder.setNegativeButton("Abbrechen") { dialog, _ ->
             dialog.cancel()
         }
-
         builder.show()
     }
 }

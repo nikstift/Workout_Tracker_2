@@ -3,15 +3,13 @@ package com.example.workouttracker2.repository
 import androidx.lifecycle.LiveData
 import com.example.workouttracker2.Exercise
 import com.example.workouttracker2.Set
+import com.example.workouttracker2.Workout
 import com.example.workouttracker2.exerciseDao
 import com.example.workouttracker2.setDao
+import com.example.workouttracker2.workoutDao
 
 var exerciseRepository = ExerciseRepository()
 class ExerciseRepository() {
-
-    fun readExerciseById(exerciseId: Int): Exercise {
-        return exerciseDao.findExerciseById(exerciseId)
-    }
 
     fun updateExercise(exercise: Exercise) {
         exerciseDao.updateExercise(exercise)
@@ -21,8 +19,12 @@ class ExerciseRepository() {
         return exerciseDao.findAllExercises()
     }
 
+    fun readWorkoutExercises(workoutId:Int):LiveData<List<Exercise>>{
+        return exerciseDao.findExercisesForWorkout(workoutId)
+    }
 
-    suspend fun addExercise(exercise: Exercise) {
+
+    fun addExercise(exercise: Exercise) {
         exerciseDao.insertExercise(exercise)
     }
 
@@ -32,6 +34,14 @@ class ExerciseRepository() {
     }
     fun findSetsForExercise(exerciseId: Int): LiveData<List<Set>> {
         return setDao.findSetsForExercise(exerciseId)
+    }
+
+    fun readAllWorkout():LiveData<List<Workout>>{
+        return workoutDao.findAllWorkouts()
+    }
+
+    fun addWorkout(workout: Workout){
+        workoutDao.insertWorkout(workout)
     }
 
 }
