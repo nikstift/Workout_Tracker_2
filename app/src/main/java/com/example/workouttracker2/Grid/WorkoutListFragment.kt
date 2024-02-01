@@ -1,7 +1,7 @@
 package com.example.workouttracker2.Grid
 
-import android.app.AlertDialog
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
 import android.widget.EditText
 import android.widget.Toast
@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.workouttracker2.R
 import com.example.workouttracker2.Workout
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 
@@ -46,25 +47,33 @@ class WorkoutListFragment : Fragment(R.layout.fragment_workout_list) {
 
 
     private fun showWorkoutNameDialog() {
-        val builder = AlertDialog.Builder(requireContext())
+        // Initialisierung des MaterialAlertDialogBuilder
+        val builder = MaterialAlertDialogBuilder(requireContext())
         builder.setTitle("Neues Workout hinzufügen")
 
-        val input = EditText(requireContext())
-        input.hint = "Workout eingeben"
-        builder.setView(input)
+        val dialogView = LayoutInflater.from(requireContext()).inflate(R.layout.custom_dialog, null)
+        val input = dialogView.findViewById<EditText>(R.id.dialog_custom_input)
+
+        builder.setView(dialogView)
+
+        // Hinzufügen der Aktionstasten und ihrer Logik
         builder.setPositiveButton("Hinzufügen") { dialog, _ ->
             val workoutName = input.text.toString().trim()
-            val newWorkout = Workout(name = workoutName)
             if (workoutName.isNotEmpty()) {
+                val newWorkout = Workout(name = workoutName)
                 workoutListViewModel.addWorkout(newWorkout)
                 dialog.dismiss()
             } else {
-                Toast.makeText(requireContext(), "Bitte eine Workout eingeben", Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(), "Bitte ein Workout eingeben", Toast.LENGTH_SHORT).show()
             }
         }
+
         builder.setNegativeButton("Abbrechen") { dialog, _ ->
             dialog.cancel()
         }
+
+        // Anzeigen des Dialogs
         builder.show()
     }
+
 }
