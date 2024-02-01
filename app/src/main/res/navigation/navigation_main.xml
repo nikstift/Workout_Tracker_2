@@ -19,8 +19,8 @@
         android:name="com.example.workouttracker2.ExerciseList.PushWorkoutListFragment"
         android:label="push_workout_list_fragment">
       <argument
-          android:name="workoutName"
-          app:argType="string"/>
+          android:name="workout"
+          app:argType="com.example.workouttracker2.Workout"/>
        <action
             android:id="@+id/action_to_exerciseDetailFragment"
             app:destination="@id/detailFragment"/>

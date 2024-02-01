@@ -1,5 +1,6 @@
 package com.example.workouttracker2.Grid
 
+import android.os.Build.VERSION_CODES.R
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
@@ -14,8 +15,7 @@ class WorkoutListFragment : Fragment(R.layout.fragment_workout_list)
 
         val btnPushWorkout = view.findViewById<Button>(R.id.btn_push_workout)
         btnPushWorkout.setOnClickListener {
-
-            findNavController().navigate(WorkoutListFragmentDirections.actionToPushWorkoutListFragment("Push Workout"))
+            findNavController().navigate(WorkoutListFragmentDirections.actionToPushWorkoutListFragment())
         }
     }
 }

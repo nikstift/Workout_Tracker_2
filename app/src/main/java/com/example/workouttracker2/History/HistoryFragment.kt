@@ -26,7 +26,6 @@ class HistoryFragment : Fragment(R.layout.history_fragment) {
 
         // Beobachte die LiveData für Sets
         historyViewModel.getExercise(exerciseId).observe(viewLifecycleOwner, Observer { sets ->
-            // Aktualisiere die RecyclerView mit den Sets
             setupList(sets)
         })
     }
