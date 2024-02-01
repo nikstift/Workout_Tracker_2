@@ -1,22 +1,17 @@
 package com.example.workouttracker2.Grid
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import androidx.core.content.PackageManagerCompat.LOG_TAG
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
-import com.example.workouttracker2.Exercise
-import com.example.workouttracker2.ExerciseList.ExerciseViewHolder
-import com.example.workouttracker2.ExerciseList.PushWorkoutListFragmentDirections
 import com.example.workouttracker2.R
 import com.example.workouttracker2.Workout
 
 class WorkoutListAdapter (private var workoutList: List<Workout>): RecyclerView.Adapter<WorkoutViewHolder>(){
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): WorkoutViewHolder {
-        val itemView = LayoutInflater.from(parent.context).inflate(R.layout.view_exercise, parent, false)
+        val itemView = LayoutInflater.from(parent.context).inflate(R.layout.view_workout, parent, false)
         return WorkoutViewHolder(itemView)
     }
 
@@ -30,15 +25,15 @@ class WorkoutListAdapter (private var workoutList: List<Workout>): RecyclerView.
         holder.itemView.setOnClickListener {
             val navController = it.findNavController()
             navController.navigate(
-                PushWorkoutListFragmentDirections.actionToExerciseDetailFragment(
+                WorkoutListFragmentDirections.actionToPushWorkoutListFragment(
                     workout
                 )
             )
         }
     }
 
-    fun updateExercises(newWorkut: List<Workout>) {
-        workoutList = newWorkut
+    fun updateWorkout(newWorkout: List<Workout>) {
+        workoutList = newWorkout
         notifyDataSetChanged()
     }
 

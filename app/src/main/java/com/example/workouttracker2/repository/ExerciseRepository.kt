@@ -41,7 +41,7 @@ class ExerciseRepository() {
     }
 
     fun addWorkout(workout: Workout){
-
+        workoutDao.insertWorkout(workout)
     }
 
 }
