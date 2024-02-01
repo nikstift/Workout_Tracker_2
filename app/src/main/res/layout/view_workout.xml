@@ -3,17 +3,24 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:layout_margin="8dp"
+    android:background="@drawable/simple_button_background"
+    android:clickable="true"
+    android:focusable="true"
+    android:paddingVertical="16dp">
 
     <TextView
         android:id="@+id/tvListContentWorkout"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="50dp"
-        android:paddingTop="10dp"
-        android:paddingBottom="10dp"
-        android:textSize="24sp"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp"
+        android:textSize="20sp"
+        android:textColor="@android:color/black"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="Push" />
 
