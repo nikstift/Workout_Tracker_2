@@ -15,8 +15,8 @@
 
   <fragment
         android:id="@+id/pushWorkoutListFragment"
-        android:name="com.example.workouttracker2.ExerciseList.PushWorkoutListFragment"
-        android:label="push_workout_list_fragment">
+        android:name="com.example.workouttracker2.ExerciseList.ExerciseListFragment"
+        android:label="exercise_list_fragment">
       <argument
           android:name="workout"
           app:argType="com.example.workouttracker2.Workout"/>

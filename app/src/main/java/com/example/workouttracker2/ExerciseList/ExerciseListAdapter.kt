@@ -30,7 +30,7 @@ class ExerciseListAdapter(private var exerciseList: List<Exercise>): RecyclerVie
         holder.itemView.setOnClickListener {
             val navController = it.findNavController()
             navController.navigate(
-                PushWorkoutListFragmentDirections.actionToExerciseDetailFragment(
+                ExerciseListFragmentDirections.actionToExerciseDetailFragment(
                     exercise
                 )
             )
