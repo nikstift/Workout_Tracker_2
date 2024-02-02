@@ -28,7 +28,7 @@ class HistoryFragment : Fragment(R.layout.history_fragment) {
         setupSwipeToDelete()
 
         // Beobachte die LiveData für Sets
-        historyViewModel.getExercise(exercise.id).observe(viewLifecycleOwner, Observer { sets ->
+        historyViewModel.getSetsForExercise(exercise.id).observe(viewLifecycleOwner, Observer { sets ->
             historyAdapter.updateSet(sets)
         })
     }

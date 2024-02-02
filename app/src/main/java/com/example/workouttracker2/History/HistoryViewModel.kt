@@ -12,7 +12,7 @@ class HistoryViewModel (private val savedStateHandle: SavedStateHandle) : ViewMo
         return savedStateHandle.get("exercise")!!
     }
 
-    fun getExercise(exerciseId: Int): LiveData<List<Set>> {
+    fun getSetsForExercise(exerciseId: Int): LiveData<List<Set>> {
         return exerciseRepository.findSetsForExercise(exerciseId)
     }
 
