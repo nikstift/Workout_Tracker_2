@@ -13,7 +13,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.workouttracker2.R
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 
-class PushWorkoutListFragment : Fragment(R.layout.fragment_excercise_list) {
+class ExerciseListFragment : Fragment(R.layout.fragment_excercise_list) {
 
     private lateinit var recyclerView: RecyclerView
     private lateinit var exerciseAdapter: ExerciseListAdapter
