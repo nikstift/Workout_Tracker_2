@@ -8,6 +8,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.workouttracker2.R
@@ -25,6 +26,8 @@ class ExerciseListFragment : Fragment(R.layout.fragment_excercise_list) {
         val workout = exerciseListViewModel.read()
         view.findViewById<TextView>(R.id.workoutName).text = workout.name
         setupList()
+        setupSwipeToDelete()
+
         val fabButton = view.findViewById<FloatingActionButton>(R.id.addExerciseButton)
         fabButton.setOnClickListener {
             showExerciseNameDialog()
@@ -45,6 +48,33 @@ class ExerciseListFragment : Fragment(R.layout.fragment_excercise_list) {
     }
 
 
+    private fun setupSwipeToDelete() {
+        val swipeToDeleteCallback = object : ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT) {
+            override fun onMove(recyclerView: RecyclerView, viewHolder: RecyclerView.ViewHolder, target: RecyclerView.ViewHolder): Boolean {
+                return false
+            }
+
+            override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
+                val position = viewHolder.adapterPosition
+                val exerciseToDelete = exerciseAdapter.getExerciseAtPosition(position)
+
+                MaterialAlertDialogBuilder(requireContext())
+                    .setTitle("Löschen bestätigen")
+                    .setMessage("Möchten Sie diese Exercise wirklich löschen?")
+                    .setNegativeButton("Abbrechen") { dialog, _ ->
+                        exerciseAdapter.notifyItemChanged(position)
+                        dialog.dismiss()
+                    }
+                    .setPositiveButton("Löschen") { dialog, _ ->
+                        exerciseListViewModel.deleteExercise(exerciseToDelete)
+                        dialog.dismiss()
+                    }
+                    .show()
+            }
+        }
+        val itemTouchHelper = ItemTouchHelper(swipeToDeleteCallback)
+        itemTouchHelper.attachToRecyclerView(recyclerView)
+    }
 
 
     private fun showExerciseNameDialog() {

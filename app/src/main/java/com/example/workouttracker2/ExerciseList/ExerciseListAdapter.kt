@@ -42,6 +42,9 @@ class ExerciseListAdapter(private var exerciseList: List<Exercise>): RecyclerVie
         notifyDataSetChanged()
     }
 
+    fun getExerciseAtPosition(position: Int): Exercise {
+        return exerciseList[position]
+    }
 }
 
 class ExerciseViewHolder(viewFromXmlLayout: View): RecyclerView.ViewHolder(viewFromXmlLayout) {

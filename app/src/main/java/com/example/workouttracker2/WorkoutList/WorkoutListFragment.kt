@@ -7,6 +7,7 @@ import android.widget.EditText
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.workouttracker2.R
@@ -24,6 +25,8 @@ class WorkoutListFragment : Fragment(R.layout.fragment_workout_list) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setupList()
+        setupSwipeToDelete()
+
         val fabButton = view.findViewById<FloatingActionButton>(R.id.addWorkoutButton)
         fabButton.setOnClickListener {
             showWorkoutNameDialog()
@@ -40,11 +43,36 @@ class WorkoutListFragment : Fragment(R.layout.fragment_workout_list) {
         workoutListViewModel.readAllWorkout().observe(viewLifecycleOwner, { workout ->
             workoutAdapter.updateWorkout(workout)
         })
-
     }
 
 
+    private fun setupSwipeToDelete() {
+        val swipeToDeleteCallback = object : ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT) {
+            override fun onMove(recyclerView: RecyclerView, viewHolder: RecyclerView.ViewHolder, target: RecyclerView.ViewHolder): Boolean {
+                return false // Bewegungen werden nicht unterstützt
+            }
 
+            override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
+                val position = viewHolder.adapterPosition
+                val workoutToDelete = workoutAdapter.getWorkoutAtPosition(position)
+
+                MaterialAlertDialogBuilder(requireContext())
+                    .setTitle("Löschen bestätigen")
+                    .setMessage("Möchten Sie dieses Workout wirklich löschen?")
+                    .setNegativeButton("Abbrechen") { dialog, _ ->
+                        workoutAdapter.notifyItemChanged(position)
+                        dialog.dismiss()
+                    }
+                    .setPositiveButton("Löschen") { dialog, _ ->
+                        workoutListViewModel.deleteWorkout(workoutToDelete)
+                        dialog.dismiss()
+                    }
+                    .show()
+            }
+        }
+        val itemTouchHelper = ItemTouchHelper(swipeToDeleteCallback)
+        itemTouchHelper.attachToRecyclerView(recyclerView)
+    }
 
     private fun showWorkoutNameDialog() {
         // Initialisierung des MaterialAlertDialogBuilder
