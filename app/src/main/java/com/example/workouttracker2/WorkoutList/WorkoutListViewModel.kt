@@ -1,4 +1,4 @@
-package com.example.workouttracker2.Grid
+package com.example.workouttracker2.WorkoutList
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel

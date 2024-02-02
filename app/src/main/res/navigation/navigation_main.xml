@@ -6,7 +6,7 @@
 
     <fragment
         android:id="@+id/workoutListFragment"
-        android:name="com.example.workouttracker2.Grid.WorkoutListFragment"
+        android:name="com.example.workouttracker2.WorkoutList.WorkoutListFragment"
         android:label="workout_list_fragment">
       <action
             android:id="@+id/action_to_pushWorkoutListFragment"

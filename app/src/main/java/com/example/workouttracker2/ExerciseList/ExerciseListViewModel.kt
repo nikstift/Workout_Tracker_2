@@ -7,7 +7,7 @@ import com.example.workouttracker2.Exercise
 import com.example.workouttracker2.Workout
 import com.example.workouttracker2.repository.exerciseRepository
 
-class PushWorkoutListViewModel(private val savedStateHandle: SavedStateHandle) : ViewModel() {
+class ExerciseListViewModel(private val savedStateHandle: SavedStateHandle) : ViewModel() {
     fun readAllPush(): LiveData<List<Exercise>> {
         return exerciseRepository.readAllExercises()
     }

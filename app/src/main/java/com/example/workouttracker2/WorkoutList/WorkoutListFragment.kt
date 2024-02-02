@@ -1,4 +1,4 @@
-package com.example.workouttracker2.Grid
+package com.example.workouttracker2.WorkoutList
 
 import android.os.Bundle
 import android.view.LayoutInflater
