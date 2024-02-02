@@ -36,6 +36,10 @@ class ExerciseRepository() {
         return setDao.findSetsForExercise(exerciseId)
     }
 
+    fun deleteExercise(exercise: Exercise){
+        exerciseDao.deleteExercise(exercise)
+    }
+
     fun readAllWorkout():LiveData<List<Workout>>{
         return workoutDao.findAllWorkouts()
     }

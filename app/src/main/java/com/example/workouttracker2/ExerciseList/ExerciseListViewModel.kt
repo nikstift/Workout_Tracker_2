@@ -8,9 +8,6 @@ import com.example.workouttracker2.Workout
 import com.example.workouttracker2.repository.exerciseRepository
 
 class ExerciseListViewModel(private val savedStateHandle: SavedStateHandle) : ViewModel() {
-    fun readAllPush(): LiveData<List<Exercise>> {
-        return exerciseRepository.readAllExercises()
-    }
 
     fun readWorkoutExercises(workoutId: Int): LiveData<List<Exercise>>{
         return exerciseRepository.readWorkoutExercises(workoutId)
@@ -20,6 +17,10 @@ class ExerciseListViewModel(private val savedStateHandle: SavedStateHandle) : Vi
         val workoutId = workout.id // Exercise-ID auslesen
         val newExercise = Exercise(name = name, workoutId = workoutId) // Set erstellen
         exerciseRepository.addExercise(newExercise)
+    }
+
+    fun deleteExercise(exercise: Exercise){
+        exerciseRepository.deleteExercise(exercise)
     }
 
     fun read(): Workout {

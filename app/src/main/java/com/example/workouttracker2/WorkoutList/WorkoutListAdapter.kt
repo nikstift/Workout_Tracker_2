@@ -40,7 +40,6 @@ class WorkoutListAdapter (private var workoutList: List<Workout>): RecyclerView.
     fun getWorkoutAtPosition(position: Int): Workout {
         return workoutList[position]
     }
-
 }
 
 class WorkoutViewHolder(viewFromXmlLayout: View): RecyclerView.ViewHolder(viewFromXmlLayout) {
