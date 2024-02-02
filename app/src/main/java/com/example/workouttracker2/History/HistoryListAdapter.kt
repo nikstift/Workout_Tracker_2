@@ -36,6 +36,10 @@ class HistoryListAdapter(private var setList: List<Set>): RecyclerView.Adapter<S
         notifyDataSetChanged()
     }
 
+    fun getSetAtPosition(position: Int): Set {
+        return setList[position]
+    }
+
 }
 
 class SetViewHolder(viewFromXmlLayout: View): RecyclerView.ViewHolder(viewFromXmlLayout) {

@@ -36,6 +36,10 @@ class ExerciseRepository() {
         return setDao.findSetsForExercise(exerciseId)
     }
 
+    fun deleteSet(set: Set){
+        setDao.deleteSet(set)
+    }
+
     fun deleteExercise(exercise: Exercise){
         exerciseDao.deleteExercise(exercise)
     }

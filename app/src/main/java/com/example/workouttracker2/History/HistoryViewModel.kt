@@ -15,4 +15,8 @@ class HistoryViewModel (private val savedStateHandle: SavedStateHandle) : ViewMo
     fun getExercise(exerciseId: Int): LiveData<List<Set>> {
         return exerciseRepository.findSetsForExercise(exerciseId)
     }
+
+    fun deleteSet(set: Set){
+        exerciseRepository.deleteSet(set)
+    }
 }
