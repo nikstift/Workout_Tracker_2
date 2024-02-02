@@ -17,4 +17,8 @@ class WorkoutListViewModel(): ViewModel() {
             exerciseRepository.addWorkout(workout)
         }
     }
+
+    fun deleteWorkout (workout: Workout){
+        exerciseRepository.deleteWorkout(workout)
+    }
 }

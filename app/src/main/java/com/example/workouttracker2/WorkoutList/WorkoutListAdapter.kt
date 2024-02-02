@@ -8,6 +8,7 @@ import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.workouttracker2.R
 import com.example.workouttracker2.Workout
+import androidx.recyclerview.widget.ItemTouchHelper
 
 class WorkoutListAdapter (private var workoutList: List<Workout>): RecyclerView.Adapter<WorkoutViewHolder>(){
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): WorkoutViewHolder {

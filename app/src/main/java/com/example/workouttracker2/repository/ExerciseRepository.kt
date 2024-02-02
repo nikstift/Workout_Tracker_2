@@ -44,4 +44,8 @@ class ExerciseRepository() {
         workoutDao.insertWorkout(workout)
     }
 
+    fun deleteWorkout(workout: Workout){
+        workoutDao.deleteWorkout(workout)
+    }
+
 }
