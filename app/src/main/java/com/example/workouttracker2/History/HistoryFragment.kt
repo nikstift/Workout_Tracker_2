@@ -6,6 +6,7 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.workouttracker2.R
@@ -33,6 +34,11 @@ class HistoryFragment : Fragment(R.layout.history_fragment) {
     private fun setupList(sets: List<Set>) {
         recyclerView = requireView().findViewById(R.id.rvExercisesDetail)
         recyclerView.layoutManager = LinearLayoutManager(context)
+
+        val dividerItemDecoration = DividerItemDecoration(recyclerView.context,
+            (recyclerView.layoutManager as LinearLayoutManager).orientation)
+        recyclerView.addItemDecoration(dividerItemDecoration)
+
         historyAdapter = HistoryListAdapter(sets)
         recyclerView.adapter = historyAdapter
     }
