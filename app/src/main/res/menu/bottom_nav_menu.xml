@@ -1,0 +1,10 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/workoutListFragment"
+        android:icon="@drawable/ic_workout"
+        android:title="Workouts" />
+    <item
+        android:id="@+id/nutritionOverviewFragment"
+        android:icon="@drawable/ic_nutrition"
+        android:title="Nutrition" />
+</menu>

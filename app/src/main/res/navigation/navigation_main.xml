@@ -48,4 +48,10 @@
             />
     </fragment>
 
+    <fragment
+        android:id="@+id/nutritionOverviewFragment"
+        android:name="com.example.workouttracker2.NutritionOverview.NutritionOverviewFragment"
+        android:label="nutrition_overview_fragment" />
+
+
 </navigation>
