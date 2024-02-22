@@ -148,6 +148,5 @@ private class YourImageAnalyzer(private val options: BarcodeScannerOptions, priv
         else {
             imageProxy.close() // Immer sicherstellen, dass ImageProxy geschlossen wird
         }
-
     }
 }
