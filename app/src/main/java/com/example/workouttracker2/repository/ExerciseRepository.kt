@@ -28,8 +28,7 @@ class ExerciseRepository() {
         exerciseDao.insertExercise(exercise)
     }
 
-    fun addSetToExercise(exerciseId: Int, set: Set) {
-        set.exerciseId = exerciseId // Legen Sie den Fremdschlüssel für das Set fest
+    fun addSetToExercise(set: Set) {
         setDao.insertSet(set)
     }
     fun findSetsForExercise(exerciseId: Int): LiveData<List<Set>> {
