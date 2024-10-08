@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+
+
+    <!-- Eingabefeld für Name des Lebensmittels -->
+    <EditText
+        android:id="@+id/etName"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:hint="Name des Lebensmittels"
+        />
+
+    <!-- Eingabefeld für Kalorien -->
+    <EditText
+        android:id="@+id/etKalorien"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:hint="Kalorien"
+        android:padding="12dp"
+        />
+
+    <!-- Eingabefeld für Proteine -->
+    <EditText
+        android:id="@+id/etProteine"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:hint="Proteine"
+        android:padding="12dp"
+        />
+
+    <!-- Eingabefeld für Fett -->
+    <EditText
+        android:id="@+id/etFett"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:hint="Fett"
+        android:padding="12dp"
+        />
+
+    <!-- Eingabefeld für Kohlenhydrate -->
+    <EditText
+        android:id="@+id/etKohlenhydrate"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:hint="Kohlenhydrate"
+        android:padding="12dp"
+        />
+    <!-- Portionsgröße und Einheit nebeneinander -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:layout_marginTop="16dp">
+
+        <!-- Eingabefeld für Portionsgröße -->
+        <EditText
+            android:id="@+id/etServingSize"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:hint="Portionsgröße"
+            android:inputType="numberDecimal" />
+
+        <!-- Eingabefeld für Einheit -->
+        <EditText
+            android:id="@+id/etUnit"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:hint="Einheit"
+            android:inputType="text" />
+    </LinearLayout>
+
+    <!-- Barcode wird hier angezeigt, nicht bearbeitbar -->
+    <TextView
+        android:id="@+id/tvBarcode"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:text="Barcode: 123456789"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:paddingBottom="8dp"
+        android:inputType="text"
+        android:focusable="false"
+        android:clickable="false"
+        android:enabled="false"
+        android:textAlignment="center"/>
+
+</LinearLayout>
