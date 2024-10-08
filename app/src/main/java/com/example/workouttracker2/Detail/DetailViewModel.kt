@@ -18,6 +18,6 @@ class DetailViewModel(private val savedStateHandle: SavedStateHandle) : ViewMode
         val newSet = Set(exerciseId = exerciseId, repetitions = repetitions, weight = weight, notes =  notes) // Set erstellen
 
         // Start a coroutine to add the set to the exercise
-        exerciseRepository.addSetToExercise(exerciseId, newSet)
+        exerciseRepository.addSetToExercise(newSet)
     }
 }
