@@ -1,5 +1,7 @@
 plugins {
     id 'com.android.application'
+    //google plugin
+    id 'com.google.gms.google-services'
     id 'org.jetbrains.kotlin.android'
     id 'androidx.navigation.safeargs.kotlin'
     id 'kotlin-kapt'
@@ -60,4 +62,7 @@ dependencies {
     implementation "androidx.room:room-runtime:$room_version"
     kapt "androidx.room:room-compiler:$room_version"
 
+    // google dependencies
+    implementation platform('com.google.firebase:firebase-bom:33.4.0')
+    implementation 'com.google.firebase:firebase-analytics'
 }
