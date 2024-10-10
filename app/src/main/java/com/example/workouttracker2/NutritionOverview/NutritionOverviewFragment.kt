@@ -115,6 +115,7 @@ class NutritionOverviewFragment : Fragment(R.layout.fragment_nutrition_overview)
                 "unit" to unit
             )
 
+
             firestoreDb.collection("lebensmittel")
                 .document(scannedBarcode)
                 .set(foodData)
