@@ -65,7 +65,7 @@ class NutritionOverviewFragment : Fragment(R.layout.fragment_nutrition_overview)
         val etServingSize = dialogView.findViewById<EditText>(R.id.etServingSize)
         val etUnit = dialogView.findViewById<EditText>(R.id.etUnit)
 
-        builder.setPositiveButton("Speichern"){dialog,_ ->
+        builder.setPositiveButton("Speichern"){_,_ ->
             val name = etName.text.toString().trim()
             val kalorien = etKalorien.text.toString().toDoubleOrNull()
             val proteine = etProteine.text.toString().toDoubleOrNull()
