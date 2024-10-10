@@ -59,16 +59,17 @@ class NutritionOverviewFragment : Fragment(R.layout.fragment_nutrition_overview)
         // ref Eingabefelder
         val etName = dialogView.findViewById<EditText>(R.id.etName)
         val etKalorien = dialogView.findViewById<EditText>(R.id.etKalorien)
-        val etProteine = dialogView.findViewById<EditText>(R.id.etProteine)
+        val etProtein = dialogView.findViewById<EditText>(R.id.etProtein)
         val etFett = dialogView.findViewById<EditText>(R.id.etFett)
         val etKohlenhydrate = dialogView.findViewById<EditText>(R.id.etKohlenhydrate)
         val etServingSize = dialogView.findViewById<EditText>(R.id.etServingSize)
         val etUnit = dialogView.findViewById<EditText>(R.id.etUnit)
 
         builder.setPositiveButton("Speichern"){_,_ ->
+
             val name = etName.text.toString().trim()
             val kalorien = etKalorien.text.toString().toDoubleOrNull()
-            val proteine = etProteine.text.toString().toDoubleOrNull()
+            val protein = etProtein.text.toString().toDoubleOrNull()
             val fett = etFett.text.toString().toDoubleOrNull()
             val kohlenhydrate = etKohlenhydrate.text.toString().toDoubleOrNull()
             val servingSize = etServingSize.text.toString().toDoubleOrNull()
@@ -83,7 +84,7 @@ class NutritionOverviewFragment : Fragment(R.layout.fragment_nutrition_overview)
                 Toast.makeText(requireContext(), "Bitte geben Sie eine gültige Kalorienzahl an", Toast.LENGTH_SHORT).show()
                 return@setPositiveButton
             }
-            if (proteine == null) {
+            if (protein == null) {
                 Toast.makeText(requireContext(), "Bitte geben Sie eine gültige Proteinzahl an", Toast.LENGTH_SHORT).show()
                 return@setPositiveButton
             }
@@ -107,7 +108,7 @@ class NutritionOverviewFragment : Fragment(R.layout.fragment_nutrition_overview)
             val foodData = hashMapOf(
                 "name" to name,
                 "calories" to kalorien,
-                "protein" to proteine,
+                "protein" to protein,
                 "fat" to fett,
                 "carbs" to kohlenhydrate,
                 "servingSize" to servingSize,
