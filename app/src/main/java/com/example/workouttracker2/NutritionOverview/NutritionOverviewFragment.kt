@@ -107,7 +107,7 @@ class NutritionOverviewFragment : Fragment(R.layout.fragment_nutrition_overview)
             val foodData = hashMapOf(
                 "name" to name,
                 "calories" to kalorien,
-                "proteine" to proteine,
+                "protein" to proteine,
                 "fat" to fett,
                 "carbs" to kohlenhydrate,
                 "servingSize" to servingSize,
